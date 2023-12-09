@@ -1,0 +1,36 @@
+{% extends "post/layout.html" %}
+{% load static %}
+{% block section %}
+    <section class="container">
+        <style>
+            .image{
+                height:60vh;
+            }
+            .image img{
+                height:100%;
+            }
+            @media(max-width:700px){
+                .image{
+                    height:auto;
+                }
+            }
+        </style>
+        <div class="image">
+            <img src="{{post.image.url}}" alt="">
+        </div>
+        <div class="title">
+            <h3>{{post.title}}</h3>
+        </div>
+        <div class="content">
+            <p>
+                {{post.body}}
+            </p>
+        </div>
+
+        <div class="page">
+            <a href="#"><span>1 |</span> Previous</a>
+            <a href="#">Next |<span> 2</span></a>
+        </div>
+    </section>
+    {% endblock section %}
+    

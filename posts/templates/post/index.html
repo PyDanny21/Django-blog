@@ -1,0 +1,36 @@
+{% extends "post/layout.html" %}
+{% load static %}
+{% block section %}
+    <section class="container" id="blogs">
+        <div class="blogs-content">
+            <div class="main-title">
+                <h2>My <span class="span">Blogs</span><span class="bg-text">My Blogs</span></h2>
+            </div>
+            <div class="blogs">
+                {% for post in page_object %}
+                <div class="blog">
+                    <img src="{{post.image.url}}" alt="">
+                    <div class="blog-text">
+                        <a href='{% url "post" post.pk%}' style='text-decoration:none;color:#000;'>
+                            <h4>
+                                {{post.title}}
+                            </h4>
+                            <p>
+                                {{post.body|truncatewords:15}}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="page">
+            {% if page_object.has_previous %}
+                <a href="?page={{page_object.previous_page_number}}"><span>{{page_object.previous_page_number}} |</span> Previous</a>
+            {% endif %}
+            {% if page_object.has_next %}
+                <a href="?page={{page_object.next_page_number}}">Next |<span> {{page_object.next_page_number}}</span></a>
+            {% endif %}
+        </div>
+    </section>
+{% endblock section %}

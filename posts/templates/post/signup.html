@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static "aut.css" %}">
+</head>
+<body>
+    <div class="container">
+        <div class="auth">
+            <h3>Sign Up</h3>
+            
+            <form action="{% url "signup" %}" method="post">
+                {% csrf_token %}
+                <style>
+                    h5{
+                        color:red;
+                    }
+                </style>
+                {% for message in messages %}
+                    <h5>{{message}} </h5>
+                {% endfor %}
+                <label for="username">Username:</label>
+                <input type="text" name='username'>
+                <hr>
+                <label for="email">Email:</label>
+                <input type="email" name='email'>
+                <hr>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="pass">
+                <hr>
+                <label for="password2">Repeat Password:</label>
+                <input type="password" name="password2" id="pass">
+                <hr>
+                <button type="submit">Signup</button>
+                <div class="links">
+                    <span href="#">Remember password?</span>
+                    <a href="{% url "login" %}">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
